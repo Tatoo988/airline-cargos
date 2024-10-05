@@ -21,16 +21,18 @@ class AirLine:
 
     def report(self, shipment_date: date) -> tuple[int, float]:
         """
-        Calculate the total earnings for shipments delivered on a specific date.
+            Generates a report of the total number of packages and earnings from shipments delivered on a specific date.
 
-        Args:
-            shipment_date (date): The date to filter shipments by.
+            Args:
+                shipment_date (date): The date for which to generate the report of delivered shipments.
 
-        Returns:
-            float: The total earnings from shipments that were delivered on the
-            given shipment_date. Only shipments with a status of 'DELIVERED' are
-            considered.
-        """
+            Returns:
+                tuple[int, float]: A tuple containing the total number of packages delivered and the total earnings
+                                   for shipments delivered on the specified date.
+
+            The function filters shipments based on the given date and delivery status, then calculates the sum of
+            packages and earnings for all shipments delivered on that date. It prints the result and returns the totals.
+            """
         report_list= ((shipment.packages_count, shipment.earnings) for shipment in self.shipments if
                     shipment.date.date() == shipment_date and
                     shipment.status == ShipmentStatus.DELIVERED)

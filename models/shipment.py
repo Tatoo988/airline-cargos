@@ -37,5 +37,11 @@ class Shipment:
         return sum((package.cost for package in self.packages))
 
     @property
-    def packages_count(self):
+    def packages_count(self) -> int:
+        """
+        Calculate the total packages of a shipment.
+
+        Returns:
+            int: The sum all packages in the shipment.
+        """
         return len(self.packages)
