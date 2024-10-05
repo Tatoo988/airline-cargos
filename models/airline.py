@@ -19,7 +19,7 @@ class AirLine:
     name: str
     shipments: List[Shipment]
 
-    def earnings(self, shipment_date: date) -> float:
+    def report(self, shipment_date: date) -> tuple[int, float]:
         """
         Calculate the total earnings for shipments delivered on a specific date.
 
@@ -31,6 +31,10 @@ class AirLine:
             given shipment_date. Only shipments with a status of 'DELIVERED' are
             considered.
         """
-        return sum((shipment.earnings for shipment in self.shipments if
+        report_list= ((shipment.packages_count, shipment.earnings) for shipment in self.shipments if
                     shipment.date.date() == shipment_date and
-                    shipment.status == ShipmentStatus.DELIVERED))
+                    shipment.status == ShipmentStatus.DELIVERED)
+        packages_count, earnings = map(sum, zip(*report_list))
+        print(f'total earnings for shipments delivered on {shipment_date}: {packages_count} packages, earnings: ${earnings}' )
+        return packages_count, earnings
+

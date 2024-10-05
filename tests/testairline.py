@@ -51,8 +51,9 @@ class TestAirLine(unittest.TestCase):
 
     def test_airline_earnings(self):
         """Test if earnings for a specific date consider only delivered shipments."""
-        earnings = self.airline.earnings(datetime(2023, 10, 5).date())
-        self.assertEqual(earnings, 20.0)  # Only the delivered shipment counts
+        report = self.airline.report(datetime(2023, 10, 5).date())
+        self.assertEqual(report[0], 2)  # Only the delivered shipment counts
+        self.assertEqual(report[1], 20.0)  # Only the delivered shipment counts
 
 
 if __name__ == '__main__':

@@ -35,3 +35,7 @@ class Shipment:
             float: The sum of the costs of all packages in the shipment.
         """
         return sum((package.cost for package in self.packages))
+
+    @property
+    def packages_count(self):
+        return len(self.packages)
